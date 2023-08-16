@@ -1,0 +1,13 @@
+[{
+    "taskName": "Brush teeth",
+    "isCompleted": false
+  },
+  {
+    "taskName": "Take bath",
+    "isCompleted": false
+  },
+  {
+    "taskName": "Eat food",
+    "isCompleted": false
+  }
+]

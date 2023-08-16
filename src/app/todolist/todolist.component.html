@@ -1,0 +1,37 @@
+<div class="container">
+    <h1>ToDo App</h1>
+    <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+        <div class="form-group">
+          <input type="text" class="task-input" id="task" placeholder="Enter task" ngModel name="task" required>
+          <!-- <label for="status">Status:</label> -->
+          <!-- <select id="status" name="status" ngModel>
+            <option *ngFor="let option of statusOptions" [value]="option">{{ option }}</option>
+          </select> -->
+          <button [disabled]="taskForm.invalid" type="submit" class="btn" id="add-btn">Add</button>
+          <small *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-muted">*Required field</small>
+        </div>
+    </form>
+    <hr>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Task</th>
+            <th scope="col">Completed</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = 'let t of taskArray; index as i'>
+            <td>{{t.taskName}}</td>
+            <td><input (change)="onCheck(i)" type="checkbox" id="status"></td>
+            <td>
+              <ng-container *ngIf="t.dueDate; else completed">{{ (t.dueDate | dueDate: true) }}</ng-container>
+              <ng-template #completed>Task Completed</ng-template>
+            </td>
+            <td><button (click)="onDelete(i)" id="delete-btn">x</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
