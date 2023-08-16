@@ -13,15 +13,15 @@ export class TodolistComponent {
   taskArray = this.tasksData.tasks;
 
   dueDate = new DueDatePipe();
-  statusOptions = ['TODO', 'INPROGRESS', 'DONE'];
+  //statusOptions = ['TODO', 'INPROGRESS', 'DONE'];
   
   onSubmit(form: NgForm){
     console.log(this.taskArray);
     const newTask = {
       taskName: form.controls['task'].value,
-      status: 'TODO',
+      //status: 'TODO',
       isCompleted: false,
-      dueDate: new Date()
+      dueDate: new Date(form.controls['dueDate'].value)
     }
     this.taskArray.push(newTask);
     form.reset();

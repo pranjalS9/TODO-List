@@ -3,10 +3,8 @@
     <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
         <div class="form-group">
           <input type="text" class="task-input" id="task" placeholder="Enter task" ngModel name="task" required>
-          <!-- <label for="status">Status:</label> -->
-          <!-- <select id="status" name="status" ngModel>
-            <option *ngFor="let option of statusOptions" [value]="option">{{ option }}</option>
-          </select> -->
+          <label for="dueDate">Due Date:</label>
+          <input type="datetime-local" id="dueDate" name="dueDate" ngModel>
           <button [disabled]="taskForm.invalid" type="submit" class="btn" id="add-btn">Add</button>
           <small *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-muted">*Required field</small>
         </div>
