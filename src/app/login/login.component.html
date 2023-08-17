@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>SignUp</h1>
+    <br>
+    <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+        <div class="form-group">
+            <label for="username" class="label">Username: </label>
+            <input type="text" name="username" class = "form-control" minlength="2" maxlength="7" ngModel required>
+        </div>
+        <br>
+        <!-- <pre></pre> -->
+        <div class="form-group">
+            <label for="password" class="label">Password: </label>
+            <input type="text" name="password" class = "form-control" minlength="2" maxlength="7" ngModel required>
+        </div>
+        <br>
+        <!-- <pre></pre> -->
+        <div class="form-group">
+            <label for="confirm-password" class="label">Confirm Password: </label>
+            <input type="text" name="confirmPassword" class = "form-control" minlength="2" maxlength="7" ngModel required>
+        </div>
+        <br>          
+        <!-- <pre></pre> -->
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>

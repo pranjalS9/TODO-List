@@ -2,34 +2,103 @@
     <h1>ToDo App</h1>
     <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
         <div class="form-group">
-          <input type="text" class="task-input" id="task" placeholder="Enter task" ngModel name="task" required>
-          <label for="dueDate">Due Date:</label>
-          <input type="datetime-local" id="dueDate" name="dueDate" ngModel>
-          <button [disabled]="taskForm.invalid" type="submit" class="btn" id="add-btn">Add</button>
-          <small *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-muted">*Required field</small>
+          <label for="task" class="task-label">Task: </label>
+          <input type="text" class="task-input" id="task" placeholder="Enter task" ngModel name="task" minlength="2" maxlength="7" required>
+          <br>
+
+          <label for="dueDate" class="dueDate-label">Due Date: </label>
+          <input type="datetime-local" min="{{removePastDates()}}" id="dueDate" name="dueDate" ngModel required>
+          <br>
+
+          <label for="priority" class="priority-label">Priority: </label>
+
+          <label for="priority" class="priority-option">High </label>
+          <input type="radio" class="priority-radio" value="High" id="high-priority" name="priority"  ngModel>
+
+          <label for="priority" class="priority-option">  Medium </label>
+          <input type="radio" class="priority-radio" value="Medium" id="med-priority" name="priority" ngModel [attr.checked]="true">
+          
+          <label for="priority" class="priority-option">  Low </label>
+          <input type="radio" class="priority-radio" value="Low" id="low-priority" name="priority" ngModel>
+          <br>
+
+          <button [disabled]="taskForm.invalid" type="submit" class="btn" id="add-btn">Add</button><br>
+          <p *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-muted">*Required field</p>
         </div>
     </form>
     <hr>
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Task</th>
-            <th scope="col">Completed</th>
-            <th scope="col">Due Date</th>
-            <th scope="col">Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor = 'let t of taskArray; index as i'>
-            <td>{{t.taskName}}</td>
-            <td><input (change)="onCheck(i)" type="checkbox" id="status"></td>
-            <td>
-              <ng-container *ngIf="t.dueDate; else completed">{{ (t.dueDate | dueDate: true) }}</ng-container>
-              <ng-template #completed>Task Completed</ng-template>
-            </td>
-            <td><button (click)="onDelete(i)" id="delete-btn">x</button></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="tasks-container">
+      <div class="todo-container table-container">
+        <table class="todo-table">
+          <caption>BACKLOGS</caption>
+          <thead>
+            <tr>
+              <th scope="col">Task</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Start</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = 'let t of taskArray; index as i'>
+              <td>{{t.taskName}}</td>
+              <td class="dueDate">
+                <ng-container>{{ (t.dueDate | dueDate: true) }}</ng-container>
+                <ng-template #completed>Task Completed</ng-template>
+              </td>
+              <td class="priority">{{t.priority}}</td>
+              <td><button (click)="onStart(i)" id="start-btn">Start</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="inprogress-container table-container">
+        <table class="todo-table">
+          <caption>IN PROGRESS</caption>
+          <thead>
+            <tr>
+              <th scope="col">Task</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Priority</th>
+              <th scope="col">Completed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = 'let t of inProgressArray; index as i'>
+              <td>{{t.taskName}}</td>
+              <td class="dueDate">
+                <ng-container>{{ (t.dueDate | dueDate: true) }}</ng-container>
+                <ng-template #completed>Task Completed</ng-template>
+              </td>
+              <td class="priority">{{t.priority}}</td>
+              <td><button (click)="onComplete(i)" id="complete-btn">Done</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="done-container table-container">
+        <table class="todo-table">
+          <caption>COMPLETED</caption>
+          <thead>
+            <tr>
+              <th scope="col">Task</th>
+              <th scope="col">Completed</th>
+              <th scope="col">Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor = 'let t of onCompleteArray; index as i'>
+              <td>{{t.taskName}}</td>
+              <td>{{completedOn()}}</td>
+              <td><button (click)="onDelete(i)" id="delete-btn" class="remove-btn">X</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    
 </div>

@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { TodolistComponent } from './todolist/todolist.component';
 import { FormsModule } from '@angular/forms';
 import { DueDatePipe } from './due-date.pipe';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodolistComponent,
-    DueDatePipe
+    DueDatePipe,
+    LoginComponent
   ],
   imports: [
     FormsModule,

@@ -1,4 +1,6 @@
-
+/* .container{
+    overflow-x: auto;
+} */
 h1{
     background-color: rgb(190, 217, 228);
     text-align: center;
@@ -10,32 +12,41 @@ h1{
     margin: 1.5rem;
     font-size: 1.5rem;
 }
+.tasks-container{
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+}
+.table-container{
+    margin: 1rem;
+    overflow: auto;
+}
+caption{
+    background-color: rgb(190, 217, 228);
+    padding: 0.6rem;
+}
 #task{
     cursor: horizontal-text;
-    width: 84%;
+    width: 64%;
     margin-left: 0.3rem;
-    padding: 0.6rem;
+    padding: 0.4rem;
     border: 2px solid rgb(139, 136, 136);
     border-radius: 5px;
 }
-#add-btn{
+#start-btn, #add-btn, #complete-btn, #delete-btn{
     cursor: pointer;
     margin-left: 0.5rem;
     padding: 0.6rem;
     width: 4rem;
-    background-color: rgb(190, 217, 228);
     border: none;
     border-radius: 5px;
+    font-weight: bolder;
+}
+#start-btn, #add-btn, #complete-btn {
+    background-color: rgb(190, 217, 228);
 }
 #delete-btn{
-    cursor: pointer;
-    padding: 0.2rem;
-    width: 2.8rem;
     background-color: red;
-    color: white;
-    font-size: 1.3rem;
-    border: none;
-    border-radius: 5px;
 }
 #errorMessage{
     margin-left: 0.5rem;
@@ -48,13 +59,29 @@ h1{
 table{
     border-collapse: collapse;
     width: 100%;
-}
-th{
-    font-size: 1.1rem;
+    overflow: auto;
 }
 th, tr, td{
     background-color: rgb(239, 243, 243);
     padding: 0.6rem;
     text-align: center;
     border-bottom: 1px solid rgb(186, 183, 183);
+}
+th{
+    font-size: 1.1rem;
+}
+tr, td{
+    font-size: 0.9rem;
+}
+.priority-label, .priority-option, .dueDate-label, .task-label {
+    font-size: 1rem;
+}
+.dueDate-label, .priority-label, .task-label{
+    font-weight: bolder;
+}
+.dueDate{
+    font-size: 0.7rem;
+}
+.priority{
+    font-size: 0.8rem;
 }

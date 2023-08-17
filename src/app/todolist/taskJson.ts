@@ -5,18 +5,18 @@ export class TasksData {
   tasks = [
     {
       taskName: "Brush teeth",
-      isCompleted: false,
-      dueDate: new Date() 
+      dueDate: new Date('2023-08-31T14:00:00'),
+      priority: "Medium"
     },
     {
       taskName: "Take bath",
-      isCompleted: true,
-      dueDate: new Date() 
+      dueDate: new Date('2023-08-31T14:00:00'),
+      priority: "High"
     },
     {
       taskName: "Eat food",
-      isCompleted: false,
-      dueDate: new Date() 
+      dueDate: new Date('2023-08-31T14:00:00'),
+      priority: "Low"
     }
   ];
 }
